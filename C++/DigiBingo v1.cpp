@@ -171,13 +171,13 @@ int main() {
 		cout << "An integer was not entered" << endl;
 	}
 	getplayersnames(player, &the_players, any_use, numbers);
-	int n = 15; 
+	int n = 90; 
 	int x = 1; vector<int> numbers_to_n(n); generate(numbers_to_n.begin(), numbers_to_n.end(), [&] {return x++; });
 	m10maker(n, &multiples_of_10);
 
 	//Make the cards
 	vector<vector<int>> cardnums = {}; for (int i = 0; i < the_players.size(); i++) { cardnums.push_back({}); }
-	int cardlen = 4;
+	int cardlen = 15;
 	makecards(cardlen, &cardnums, the_players.size(), n);
 	for (int a = 0; a < size(the_players); a++) {
 		vector<string> str_cardnum; for (int i = 0; i < size(cardnums[a]); i++) { str_cardnum.push_back(to_string(cardnums[a][i])); };

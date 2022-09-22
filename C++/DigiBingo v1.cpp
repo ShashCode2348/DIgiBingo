@@ -19,6 +19,7 @@ string join(vector<string> initList, const string& separator = "") {
 	}
 	return s;
 }
+
 string join(vector<int> initList, const string& separator = "") {
 	string s;
 	for (const auto& i : initList) {

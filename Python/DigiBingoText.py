@@ -2,7 +2,6 @@ import random
 from itertools import repeat
 import time as t
 
-
 #Functions
 
 def m10maker(n):

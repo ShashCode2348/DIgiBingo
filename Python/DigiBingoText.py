@@ -3,7 +3,6 @@ from itertools import repeat
 import time as t
 
 #Functions
-
 def m10maker(n):
     maker = True
     qwerty = 0

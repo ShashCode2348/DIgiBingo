@@ -1,8 +1,3 @@
-import random
-from itertools import repeat
-import time as t
-from tkinter import *
-from tkinter import simpledialog
 from tkinter import messagebox
 
 #Functions
@@ -50,7 +45,7 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
         chosen_number = random.choice(num90)
         num90.remove(chosen_number)
         finnums.append(chosen_number)
-        cd.config(text=str(chosen_number))
+        cd.config(text="%02d" % (chosen_number,))
         num_maker(chosen_number)
         t.sleep(1)
         an = 0
@@ -176,4 +171,3 @@ for counter in range(len(z)):
 h = Label(display, text='\n'.join(posTextList), font=('Arial', 20), justify=LEFT)
 h.place(y=60, x=30)
 main.mainloop()
-

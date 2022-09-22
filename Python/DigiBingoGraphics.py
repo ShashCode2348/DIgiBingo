@@ -6,7 +6,6 @@ from tkinter import simpledialog
 from tkinter import messagebox
 
 #Functions
-
 def num_maker(counter):
     xy = counter
     num = Label(d, anchor=CENTER, font=('Arial', 25), text=("%02d" % (xy,)))

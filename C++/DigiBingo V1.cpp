@@ -7,6 +7,7 @@
 #include <random>
 using namespace std;
 
+//Functions
 string join(vector<string> initList, const string& separator = "") {
 	string s;
 	for (const auto& i : initList) {

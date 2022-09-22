@@ -19,17 +19,6 @@ def num_maker(counter):
     y_pos = int(i[0]) * 64 + 62
     num.place(x=x_pos, y=y_pos)
 
-def m10maker(n):
-    maker = True
-    qwerty = 0
-    if qwerty > int((n - 1)/10) - 1:
-        return
-    while maker == True:
-        if qwerty == int((n - 1)/10) - 1:
-            maker = False
-        qwerty += 1
-        multiples_of_10.append((qwerty * 10)-1) 
-
 def getplayersnames(p,t,an,num):
     for counter in range(int(p)):
         n = num[an]
@@ -86,11 +75,12 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
         if an2 >= 1:
             z.append(an2)
             nums.remove(nums[0])
-        a = a + 1
+        a += 1
         messagebox.askquestion('Ready', 'Are you ready to continue?')
     return [z, finnames]
 
 #Variables/Lists
+posTextList = [ ]
 winner = 'winners are'
 finnumbers = [ ]
 z = [ ]
@@ -101,10 +91,7 @@ any_use = 0
 anyuse = 0
 anyuses = 0
 any_uses = 0
-numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth', 'twenty-first', 'twenty-second', 'twenty-third', 'twenty-fourth', 'twenty-fifth', 'twenty-sixth', 'twenty-seventh', 'twenty-eigth', 'twenty-ninth', 'thirtieth', 'thirty-first', 'thirty-second']
-global multiples_of_10
-multiples_of_10 = [ ]
-posTextList = [ ]
+numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth', 'twenty-first', 'twenty-second', 'twenty-third', 'twenty-fourth', 'twenty-fifth', 'twenty-sixth', 'twenty-seventh', 'twenty-eigth', 'twenty-ninth', 'thirtieth']
 
 #Screens and Setup
 main = Tk()
@@ -141,17 +128,19 @@ main.attributes("-topmost", False)
 board.attributes("-topmost", False)
 introDisp.attributes("-topmost", False)
 
-#Get player's names and Setup
-player = simpledialog.askstring('Part 1: Players', 'How many players are playing DigiBingo?')
+#Get player's names and setup
+try:
+    player = int(simpledialog.askstring('Part 1: Players', 'How many players are playing DigiBingo?'))
+except ValueError:
+    print("An integer was not entered")
 getplayersnames(player,the_players,any_use,numbers)
 n = 91
 numbers_to_n = list(range(1, n))
-m10maker(n)
 
 #Make the cards
 cardnums = [[] for counter in repeat(None, len(the_players))]
 cardlen = 15
-makecards(int(cardlen), cardnums, len(the_players), n)
+makecards(cardlen, cardnums, len(the_players), n)
 for a in range(len(the_players)):
     l = ', '.join(map(str, cardnums[a]))
     messagebox.askquestion(the_players[a], (the_players[a] + ', your numbers are: ' + l + '\n Are you ready to continue?'))
@@ -178,7 +167,7 @@ smt.place(y=30, x=30)
 t.sleep(0.5)
 sm = Label(display, text=(', '.join(finplayers[:z[0]])), font=('Arial', 20))
 sm.place(x=240, y=30)
-numbers = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th', '31th', '32th']
+numbers = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th']
 for counter in range(len(z)):
     posTextList.append(f"{numbers[counter]}: {', '.join(finplayers[:z[0]])}")
     for counter in range(z[0]):
@@ -187,3 +176,4 @@ for counter in range(len(z)):
 h = Label(display, text='\n'.join(posTextList), font=('Arial', 20), justify=LEFT)
 h.place(y=60, x=30)
 main.mainloop()
+

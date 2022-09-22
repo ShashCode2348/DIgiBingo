@@ -65,8 +65,7 @@ void getplayersnames(int p, vector<string>* t, int an, vector<string> num) {
 	cout << "These are the people playing:\n" << list_of_players << "\nAre these the only people playing(y/n)? " << flush;
 	cin >> ans1;
 	if (ans1 == "n") {
-		string smth;  cout << "How many more players are playing? " << flush; cin >> smth;
-		int play = stoi(smth);
+		int play;  cout << "How many more players are playing? " << flush; cin >> play;
 		getplayersnames(play, t, an, num);
 	}
 	else if (ans1 == "y") {

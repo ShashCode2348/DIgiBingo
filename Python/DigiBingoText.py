@@ -3,7 +3,7 @@ from itertools import repeat
 import time as t
 
 
-#functions
+#Functions
 
 def m10maker(n):
     maker = True
@@ -20,14 +20,14 @@ def getplayersnames(p,t,an,num):
         the =  input('Who is your ' + n + ' player? ')
         t.insert(an, the)
         an = an + 1
-        list_of_players = ', '.join(t)
+    list_of_players = ', '.join(t)
     ans1 = input('These are the players playing:\n' + list_of_players + '\nAre these the only people playing(y/n)?')
     if ans1 == 'n':
-        play = input('How many more players are playing?')
+        play = int(input('How many more players are playing?'))
+        print("An integer was not entered")
         getplayersnames(play,t,an,num)
-    else:
+    elif ans1 == 'y':
         print('Now for the player\'s cards')
-
 
 def makecards(clen, cnums, p, n):
    for a in range(p):
@@ -75,63 +75,52 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
             nums.remove(nums[0])
         if a in multiples_of_10:
             print('The numbers that have been called out so far are: ' + ', '.join(map(str, finnums)))
-        a = a + 1
+        a += 1
         xyz = input('Are you ready to continue? ')
     return [z, finnames]
 
-#variables/lists
-
+#Variables/Lists
 winner = 'winners are'
-
 finnumbers = [ ]
-
 z = [ ]
-
 the_players = [ ]
-
 finplayers = [ ]
-
 donenums = [ ]
-
 any_use = 0
-
 anyuse = 0
-
 anyuses = 0
-
 any_uses = 0
-
-numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth', 'eleventh', 'twelfth']
-
+numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eigth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth', 'twenty-first', 'twenty-second', 'twenty-third', 'twenty-fourth', 'twenty-fifth', 'twenty-sixth', 'twenty-seventh', 'twenty-eigth', 'twenty-ninth', 'thirtieth']
 global multiples_of_10
 multiples_of_10 = [ ]
 
-#intro
-print('Welcome to DigiBingo(3 - 12 players)!')
+#Intro
+print('Welcome to DigiBingo(2 - 30 players)!')
 print('DigiBingo:\n    1. Asks for details\n    2. Makes each player a card of numbers\n    3. Chooses a random number not chosen already and shows which people have that number\n    4. Displays the winner and the order of players(who came 1st/2nd/last)')
 print('So...')
 t.sleep(0.5)
 print('Let\'s get started.')
 
-#get player's names and setup
-player = input('How many players are playing DigiBingo? ')
+#Get player's names and setup
+try:
+    player = int(input('How many players are playing DigiBingo? '))
+except ValueError:
+    print("An integer was not entered")
 getplayersnames(player,the_players,any_use,numbers)
-n = int(input('How many numbers would you like to use(e.g. 90, 100)'))
-n += 1
+n = 91
 numbers_to_n = list(range(1, n))
-if n > 10:
-    m10maker(n)
+m10maker(n)
 
-#make the cards
+#Make the cards
 cardnums = [[] for counter in repeat(None, len(the_players))]
-cardlen= input('How many numbers would you like per each player\'s cards(numbers  to strike out when called)? ')
-makecards(int(cardlen), cardnums, len(the_players), n)
+cardlen = 15
+makecards(cardlen, cardnums, len(the_players), n)
 for a in range(len(the_players)):
     l = ', '.join(map(str, cardnums[a]))
     print(the_players[a] + ', your numbers are: ' + l)
 xyzy = input('Are you ready to continue? ')
 
-#calling the numbers
+#Calling the numbers
 fincardnums = [[] for counter in repeat(None, len(the_players))]
 y = getnumbers(numbers_to_n, finnumbers, any_use, the_players, cardnums, fincardnums, anyuse, numbers, anyuses, finplayers, any_uses)
 z = y[0]
@@ -143,17 +132,9 @@ if z[0] == 1:
 print('The ' + winner + '...', end = ' ')
 t.sleep(0.5)
 print(', '.join(finplayers[:z[0]]))
-numbers = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eigth', 'Ninth', 'Tenth', 'Eleventh', 'Twelfth']
+numbers = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th']
 for counter in range(len(z)):
     print(f"{numbers[counter]}: {', '.join(finplayers[:z[0]])}")
     for counter in range(z[0]):
         finplayers.remove(finplayers[0])
     z.remove(z[0])
-
-
-
-
-
-
-
-

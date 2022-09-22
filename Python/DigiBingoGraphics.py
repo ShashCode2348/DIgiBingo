@@ -1,3 +1,8 @@
+import random
+from itertools import repeat
+import time as t
+from tkinter import *
+from tkinter import simpledialog
 from tkinter import messagebox
 
 #Functions

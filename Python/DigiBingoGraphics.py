@@ -6,15 +6,16 @@ from tkinter import simpledialog
 from tkinter import messagebox
 
 #Functions
+
 def num_maker(counter):
     xy = counter
-    num = Label(d, anchor=CENTER, font=('Arial', 25), text=("%02d" % (xy,)))
+    num = Label(display, anchor=CENTER, font=('Arial', 25), text=("%02d" % (xy,)))
     counter = xy - 1
     i = ("%02d" % (counter,))
     z = int(i[1]) * 78
     if int(i[1]) > 4:
         z += 63
-    x_pos = z + 55
+    x_pos = z + 565
     y_pos = int(i[0]) * 64 + 62
     num.place(x=x_pos, y=y_pos)
 
@@ -54,6 +55,7 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
         t.sleep(1)
         an = 0
         an2 = 0
+        message_text = ''
         for counter in range(len(names)):
             an3 = 0
             plural = ' numbers'
@@ -64,18 +66,19 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
                 if len(cards[counter]) == 0:
                     an2 += 1
                     an3 += 1
-                    messagebox.askquestion(names[counter], (names[counter] + ' has finished their numbers and is ' + nums[0] + '\n Are you ready to continue?'))
+                    message_text += (names[counter] + ' has finished their numbers and is ' + nums[0] + '\n')
                     finnames.append(names[counter])
                 if an3 != 1:
                     if len(cards[counter]) == 1:
                         plural = ' number'
-                    messagebox.askquestion(names[counter], (names[counter] + ', you have ' + str(chosen_number) + ' in your card, and have ' + str(len(cards[counter])) + plural + ' left to finish' + '\n Are you ready to continue?'))
+                    message_text += (names[counter] + ', you have ' + str(chosen_number) + ' in your card, and have ' + str(len(cards[counter])) + plural + ' left to finish' + '\n')
                 t.sleep(0.5)
         if an2 >= 1:
             z.append(an2)
             nums.remove(nums[0])
         a += 1
-        messagebox.askquestion('Ready', 'Are you ready to continue?')
+        message_text += ('Are you ready to continue?')
+        messagebox.askquestion('Continue?', message_text)
     return [z, finnames]
 
 #Variables/Lists
@@ -95,22 +98,9 @@ numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'e
 #Screens and Setup
 main = Tk()
 main.geometry('+90+10')
-display = Canvas(main, width=510, height=500)
+display = Canvas(main, width=1430, height=1110)
 display.pack()
-
-board = Toplevel(main)
-board.geometry('+600+10')
-d = Canvas(board, width=920, height=700)
-d.pack()
-
-introDisp = Toplevel(main)
-introDisp.geometry('+90+620')
-introCanvas = Canvas(introDisp, width=900, height=400)
-introCanvas.pack()
-
 main.attributes("-topmost", True)
-board.attributes("-topmost", True)
-introDisp.attributes("-topmost", True)
 
 #Intro
 introText = '''Welcome to DigiBingo(2 - 30 players)!
@@ -120,12 +110,10 @@ DigiBingo:
     3. Chooses a random number not chosen already 
     and shows which people have that number
     4. Displays the winner and the position of players
-Click on the screen above to get started.'''
-introLabel = Label(introCanvas, font=('Arial', 14), text=introText, justify=LEFT)
-introLabel.pack()
+Click on the screen to get started.'''
+introLabel = Label(display, font=('Arial', 14), text=introText, justify=LEFT)
+introLabel.place(x=40, y=550)
 main.attributes("-topmost", False)
-board.attributes("-topmost", False)
-introDisp.attributes("-topmost", False)
 
 #Get player's names and setup
 try:
@@ -140,10 +128,11 @@ numbers_to_n = list(range(1, n))
 cardnums = [[] for counter in repeat(None, len(the_players))]
 cardlen = 15
 makecards(cardlen, cardnums, len(the_players), n)
+message_text = ''
 for a in range(len(the_players)):
     l = ', '.join(map(str, cardnums[a]))
-    messagebox.askquestion(the_players[a], (the_players[a] + ', your numbers are: ' + l + '\n Are you ready to continue?'))
-messagebox.askquestion('Ready', 'Are you ready to continue?')
+    message_text += (the_players[a] + ', your numbers are: ' + l + '\n')
+messagebox.askquestion('Ready', message_text + 'Are you ready to continue?')
 
 #Setup
 display.create_text(255, 25, text='The chosen number is:', font=('Arial', 20))

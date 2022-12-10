@@ -15,7 +15,7 @@ def num_maker(counter):
     z = int(i[1]) * 78
     if int(i[1]) > 4:
         z += 63
-    x_pos = z + 565
+    x_pos = z + 625
     y_pos = int(i[0]) * 64 + 62
     num.place(x=x_pos, y=y_pos)
 
@@ -72,7 +72,7 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
                     if len(cards[counter]) == 1:
                         plural = ' number'
                     message_text += (names[counter] + ', you have ' + str(chosen_number) + ' in your card, and have ' + str(len(cards[counter])) + plural + ' left to finish' + '\n')
-                t.sleep(0.5)
+                t.sleep(1.5/len(names))
         if an2 >= 1:
             z.append(an2)
             nums.remove(nums[0])
@@ -97,8 +97,9 @@ numbers = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'e
 
 #Screens and Setup
 main = Tk()
-main.geometry('+90+10')
-display = Canvas(main, width=1430, height=1110)
+main.geometry('+40+10')
+main.title("DigiBingo")
+display = Canvas(main, width=1470, height=710)
 display.pack()
 main.attributes("-topmost", True)
 
@@ -111,8 +112,8 @@ DigiBingo:
     and shows which people have that number
     4. Displays the winner and the position of players
 Click on the screen to get started.'''
-introLabel = Label(display, font=('Arial', 14), text=introText, justify=LEFT)
-introLabel.place(x=40, y=550)
+introLabel = Label(display, font=('Arial', 18), text=introText, justify=LEFT)
+introLabel.place(x=40, y=15)
 main.attributes("-topmost", False)
 
 #Get player's names and setup
@@ -135,9 +136,9 @@ for a in range(len(the_players)):
 messagebox.askquestion('Ready', message_text + 'Are you ready to continue?')
 
 #Setup
-display.create_text(255, 25, text='The chosen number is:', font=('Arial', 20))
-cd = Label(display, text='', font=('Arial', 285))
-cd.place(x=255, y=250, anchor='center')
+display.create_text(245, 289, text='The chosen number is:', font=('Arial', 20))
+cd = Label(display, text='', font=('Arial', 245))
+cd.place(x=245, y=484, anchor='center')
 
 #Calling the numbers
 fincardnums = [[] for counter in repeat(None, len(the_players))]
@@ -147,12 +148,13 @@ finplayers = y[1]
 
 #Who wins?
 display.delete("all")
+introLabel.destroy()
 cd.destroy()
 if z[0] == 1:
     winner = 'winner is'
 smt = Label(display, text=('The ' + winner + '...'), font=('Arial', 20))
 smt.place(y=30, x=30)
-t.sleep(0.5)
+t.sleep(5)
 sm = Label(display, text=(', '.join(finplayers[:z[0]])), font=('Arial', 20))
 sm.place(x=240, y=30)
 numbers = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd', '24th', '25th', '26th', '27th', '28th', '29th', '30th']

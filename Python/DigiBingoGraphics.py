@@ -30,7 +30,7 @@ def getplayersnames(p,t,an,num):
     if ans1 == False:
         play = simpledialog.askstring('Players' ,'How many more players are playing?')
         getplayersnames(play,t,an,num)
-    if ans1 == True:
+    else:
         messagebox.askquestion('Part 2: Players Cards' ,'Now for the player\'s cards. Are you ready to continue?')
 
 def makecards(clen, cnums, p, n):

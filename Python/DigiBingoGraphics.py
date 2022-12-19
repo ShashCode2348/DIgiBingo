@@ -31,10 +31,7 @@ def getplayersnames(p,t,an,num):
         play = simpledialog.askstring('Players' ,'How many more players are playing?')
         getplayersnames(play,t,an,num)
     if ans1 == True:
-        messagebox.askquestion('Part 2: Players Cards' ,'Now for the player\'s cards. Are you ready to continue')
-    else:
-        play = simpledialog.askstring('Players' ,'How many more players are playing?')
-        getplayersnames(play,t,an,num)
+        messagebox.askquestion('Part 2: Players Cards' ,'Now for the player\'s cards. Are you ready to continue?')
 
 def makecards(clen, cnums, p, n):
    for a in range(p):
@@ -77,8 +74,9 @@ def getnumbers(num90, finnums, a, names, cards, fincards, an, nums, an2, finname
             z.append(an2)
             nums.remove(nums[0])
         a += 1
-        message_text += ('Are you ready to continue?')
-        messagebox.askquestion('Continue?', message_text)
+        message_text += ('Are you ready to continue(Press "No" to exit the game)?')
+        if messagebox.askquestion('Continue?', message_text) == 'no':
+            quit()
     return [z, finnames]
 
 #Variables/Lists
@@ -111,7 +109,7 @@ DigiBingo:
     3. Chooses a random number not chosen already 
     and shows which people have that number
     4. Displays the winner and the position of players
-Click on the screen to get started.'''
+Click on the taskbar to get started.'''
 introLabel = Label(display, font=('Arial', 18), text=introText, justify=LEFT)
 introLabel.place(x=40, y=15)
 main.attributes("-topmost", False)

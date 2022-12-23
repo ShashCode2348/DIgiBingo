@@ -3,4 +3,4 @@ DigiBingo is a Python project which enables you to play Bingo online with friend
 
 I hope you enjoy playing DigiBingo with your friends(or even with yourself if you want!) and have fun!
 
-![profileViews](https://en3zcgi7b3erui3.m.pipedream.net/?username=ShashCode2348/DigiBingo)
+![](https://view-counter.tobyhagan.com/?user=ShashCode2348/{your_github_repository})

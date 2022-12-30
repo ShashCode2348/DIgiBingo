@@ -27,7 +27,7 @@ public:
 class Game {
 public:
 	static const int m_cardlen = 15;
-	static const int m_totalnums = 90;
+	static const int m_totalnums = 91;
 	vector<int> multiples_of_10;
 	vector<Player> the_players;
 	vector<Player> finplayers;

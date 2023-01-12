@@ -17,12 +17,11 @@ using namespace std;
 
 string join(vector<string> initList, const string& separator = "");
 string intJoin(vector<int> initList, const string& separator = "", const string& fill = "");
+vector<string> split(string initStr, char sep);
 int choice(vector<int> list);
-extern vector<string> numbers;
-string askStr(string qText);
-void dispText(string dText);
 string setdp(int dp, int i);
-void num_maker(int counter);
+
+extern vector<string> numbers;
 
 class Player {
 private:
@@ -37,16 +36,26 @@ public:
 
 class Game {
 public:
-	static const int m_cardlen = 15;
-	static const int m_totalnums = 90;
-	vector<int> multiples_of_10;
+	static const int m_cardlen = 5;
+	static const int m_totalnums = 16;
 	vector<Player> the_players;
 	vector<Player> finplayers;
 	vector<int> numPerPlace{};
+	vector<Fl_Box*> numBoard{};
+	Fl_Box* inpText = new Fl_Box(FL_NO_BOX, 60, 665, 0, 0, ""); Fl_Input* inpField = new Fl_Input(60, 685, 360, 40, ""); string inp;
+	Fl_Box* smt = new Fl_Box(FL_NO_BOX, 30, 30, 0, 0, ""); Fl_Box* w = new Fl_Box(FL_NO_BOX, 30, 60, 0, 0, "");
+	Fl_Window* win;
+	bool showNum = true;
+	//private:
+	string AskStr(string qText);
 public:
-	Game() {}
+	Game();
 	void playersInit();
 	void addPlayer(Player player) { the_players.push_back(player); }
 	void getnumbers(Fl_Box* numDisp);
+	void num_maker(int counter);
+	string askStr(string qText);
+	void dispText(string qText);
+	void finGame();
+	string finGameTransform();
 };
-

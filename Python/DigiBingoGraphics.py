@@ -109,7 +109,7 @@ DigiBingo:
     3. Chooses a random number not chosen already 
     and shows which people have that number
     4. Displays the winner and the position of players
-Click on the taskbar to get started.'''
+Click the top to get started.'''
 introLabel = Label(display, font=('Arial', 18), text=introText, justify=LEFT)
 introLabel.place(x=40, y=15)
 main.attributes("-topmost", False)
